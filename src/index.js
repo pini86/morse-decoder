@@ -45,10 +45,10 @@ function decode(expr) {
     }
  
  let wordsMorse=[];
- for (let item of words){ // заменяем 0 и 1 на точки и тире, звездочки на пробел
-     item=item.replaceAll("00",'');
-     item=item.replaceAll("10",'.');
-     item=item.replaceAll("11",'-');
+ for (let item of words){ // заменяем 0 и 1 на точки и тире
+     item=item.replace(/00/g,'');
+     item=item.replace(/10/g,'.');
+     item=item.replace(/11/g,'-');
      wordsMorse.push(item); // складываем уже в виде морзянки
  }
  
