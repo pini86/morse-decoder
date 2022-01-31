@@ -38,7 +38,34 @@ const MORSE_TABLE = {
 };
 
 function decode(expr) {
-    // write your solution here
+    let numWords=expr.length/10;
+    let words=[];
+    for( let i=0; i<numWords; i++){
+        words[i]=expr.slice( 10*i , 10*i+10 ); //делим на слова по 10 символов
+    }
+ 
+ let wordsMorse=[];
+ for (let item of words){ // заменяем 0 и 1 на точки и тире, звездочки на пробел
+     item=item.replaceAll("00",'');
+     item=item.replaceAll("10",'.');
+     item=item.replaceAll("11",'-');
+     wordsMorse.push(item); // складываем уже в виде морзянки
+ }
+ 
+ let outStr='';
+ for (let item2 of wordsMorse){ // перебираем массив слов на морзянке
+     if (item2 === '**********'){
+         outStr += " "; // звездочки кладем как пробел
+     }
+ 
+     for (let key in MORSE_TABLE ){ // сравниваем побуквенно со словарем
+        if (item2 === key){
+           outStr += MORSE_TABLE[key]; //при совпадении кладем в выходную строку
+         }
+     }
+ }
+return outStr;
+
 }
 
 module.exports = {
